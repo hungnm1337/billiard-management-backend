@@ -1,0 +1,6 @@
+@Billiard_HostAddress = http://localhost:5245
+
+GET {{Billiard_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
