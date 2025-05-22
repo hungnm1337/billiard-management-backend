@@ -1,4 +1,4 @@
-﻿namespace Billiard.Models.DTO
+﻿namespace Billiard.DTO
 {
     public class LoginModel
     {

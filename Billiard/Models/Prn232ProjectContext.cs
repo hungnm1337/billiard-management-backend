@@ -21,11 +21,19 @@ public partial class Prn232ProjectContext : DbContext
 
     public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
 
+    public virtual DbSet<OrderTable> OrderTables { get; set; }
+
     public virtual DbSet<RewardPoint> RewardPoints { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
+    public virtual DbSet<Salary> Salaries { get; set; }
+
     public virtual DbSet<Service> Services { get; set; }
+
+    public virtual DbSet<Shift> Shifts { get; set; }
+
+    public virtual DbSet<ShiftAssignment> ShiftAssignments { get; set; }
 
     public virtual DbSet<Table> Tables { get; set; }
 
@@ -43,176 +51,173 @@ public partial class Prn232ProjectContext : DbContext
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.AccountId).HasName("PK__account__46A222CD87F2F432");
+            entity.HasKey(e => e.AccountId).HasName("PK__Account__349DA5A6D00B848A");
 
-            entity.ToTable("account");
+            entity.ToTable("Account");
 
-            entity.Property(e => e.AccountId).HasColumnName("account_id");
-            entity.Property(e => e.Avt)
-                .IsUnicode(false)
-                .HasColumnName("avt");
-            entity.Property(e => e.Password)
-                .IsUnicode(false)
-                .HasColumnName("password");
-            entity.Property(e => e.Status)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("status");
-            entity.Property(e => e.Username)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("username");
+            entity.Property(e => e.Password).HasMaxLength(255);
+            entity.Property(e => e.Status).HasMaxLength(255);
+            entity.Property(e => e.Username).HasMaxLength(255);
         });
 
         modelBuilder.Entity<Invoice>(entity =>
         {
-            entity.HasKey(e => e.InvoiceId).HasName("PK__invoice__F58DFD49F088EC21");
+            entity.HasKey(e => e.InvoiceId).HasName("PK__Invoice__D796AAB50F9021BE");
 
-            entity.ToTable("invoice");
+            entity.ToTable("Invoice");
 
-            entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
-            entity.Property(e => e.EmployeeId).HasColumnName("employee_id");
-            entity.Property(e => e.PaymentStatus)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("payment_status");
-            entity.Property(e => e.TimeEnd)
-                .HasColumnType("datetime")
-                .HasColumnName("time_end");
-            entity.Property(e => e.TimeStart)
-                .HasColumnType("datetime")
-                .HasColumnName("time_start");
-            entity.Property(e => e.TotalAmount)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("total_amount");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.PaymentStatus).HasMaxLength(255);
+            entity.Property(e => e.TimeEnd).HasColumnType("datetime");
+            entity.Property(e => e.TimeStart).HasColumnType("datetime");
+            entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.Invoices)
+            entity.HasOne(d => d.Employee).WithMany(p => p.InvoiceEmployees)
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_invoice_employee");
+                .HasConstraintName("FK__Invoice__Employe__5165187F");
+
+            entity.HasOne(d => d.User).WithMany(p => p.InvoiceUsers)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Invoice__UserId__52593CB8");
         });
 
         modelBuilder.Entity<InvoiceDetail>(entity =>
         {
-            entity.HasKey(e => e.ServiceTableId).HasName("PK__invoice___617753E11272C5D4");
+            entity.HasKey(e => e.ServiceTableId).HasName("PK__InvoiceD__6C470140B3672D5F");
 
-            entity.ToTable("invoice_detail");
-
-            entity.Property(e => e.ServiceTableId).HasColumnName("service_table_id");
-            entity.Property(e => e.InvoiceId).HasColumnName("invoice_id");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
-            entity.Property(e => e.ServiceId).HasColumnName("service_id");
-            entity.Property(e => e.TableId).HasColumnName("table_id");
+            entity.ToTable("InvoiceDetail");
 
             entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.InvoiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_invoice_detail_invoice");
+                .HasConstraintName("FK__InvoiceDe__Invoi__5535A963");
 
             entity.HasOne(d => d.Service).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.ServiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_invoice_detail_service");
+                .HasConstraintName("FK__InvoiceDe__Servi__571DF1D5");
 
             entity.HasOne(d => d.Table).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.TableId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_invoice_detail_table");
+                .HasConstraintName("FK__InvoiceDe__Table__5629CD9C");
+        });
+
+        modelBuilder.Entity<OrderTable>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__OrderTab__3214EC0775681E6E");
+
+            entity.ToTable("OrderTable");
+
+            entity.Property(e => e.Time).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Table).WithMany(p => p.OrderTables)
+                .HasForeignKey(d => d.TableId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrderTabl__Table__4D94879B");
+
+            entity.HasOne(d => d.User).WithMany(p => p.OrderTables)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrderTabl__UserI__4E88ABD4");
         });
 
         modelBuilder.Entity<RewardPoint>(entity =>
         {
-            entity.HasKey(e => e.RewardPointsId).HasName("PK__reward_p__1240C568FBC32ADA");
-
-            entity.ToTable("reward_points");
-
-            entity.Property(e => e.RewardPointsId).HasColumnName("reward_points_id");
-            entity.Property(e => e.Points).HasColumnName("points");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.HasKey(e => e.RewardPointsId).HasName("PK__RewardPo__8CC90066CFFA56E3");
 
             entity.HasOne(d => d.User).WithMany(p => p.RewardPoints)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_reward_points_user");
+                .HasConstraintName("FK__RewardPoi__UserI__3E52440B");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__role__760965CCF23A09E4");
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__8AFACE1AFC674245");
 
-            entity.ToTable("role");
+            entity.ToTable("Role");
 
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.RoleName)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("role_name");
+            entity.Property(e => e.RoleName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<Salary>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Salary__3214EC074D97447B");
+
+            entity.ToTable("Salary");
+
+            entity.Property(e => e.Salary1).HasColumnName("Salary");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Salaries)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Salary__UserId__412EB0B6");
         });
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__service__3E0DB8AF780287AB");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__C51BB00A8303920C");
 
-            entity.ToTable("service");
+            entity.ToTable("Service");
 
-            entity.Property(e => e.ServiceId).HasColumnName("service_id");
-            entity.Property(e => e.Price)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("price");
-            entity.Property(e => e.Quantity).HasColumnName("quantity");
-            entity.Property(e => e.ServiceName)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("service_name");
+            entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.ServiceName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<Shift>(entity =>
+        {
+            entity.HasKey(e => e.ShiftId).HasName("PK__Shifts__C0A83881D09979F7");
+
+            entity.Property(e => e.ShiftName).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<ShiftAssignment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__ShiftAss__3214EC0763959FDF");
+
+            entity.Property(e => e.Status).HasMaxLength(255);
+
+            entity.HasOne(d => d.Employee).WithMany(p => p.ShiftAssignments)
+                .HasForeignKey(d => d.EmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ShiftAssi__Emplo__45F365D3");
+
+            entity.HasOne(d => d.Shift).WithMany(p => p.ShiftAssignments)
+                .HasForeignKey(d => d.ShiftId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__ShiftAssi__Shift__46E78A0C");
         });
 
         modelBuilder.Entity<Table>(entity =>
         {
-            entity.HasKey(e => e.TableId).HasName("PK__table__B21E8F2440BACD5E");
+            entity.HasKey(e => e.TableId).HasName("PK__Table__7D5F01EEAA5E8698");
 
-            entity.ToTable("table");
+            entity.ToTable("Table");
 
-            entity.Property(e => e.TableId).HasColumnName("table_id");
-            entity.Property(e => e.HourlyRate)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("hourly_rate");
-            entity.Property(e => e.Status)
-                .HasMaxLength(10)
-                .IsUnicode(false)
-                .HasColumnName("status");
-            entity.Property(e => e.TableName)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("table_name");
+            entity.Property(e => e.HourlyRate).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Status).HasMaxLength(255);
+            entity.Property(e => e.TableName).HasMaxLength(255);
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__user__B9BE370FCB127F4F");
+            entity.HasKey(e => e.UserId).HasName("PK__User__1788CC4CD19CCE12");
 
-            entity.ToTable("user");
+            entity.ToTable("User");
 
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-            entity.Property(e => e.AccountId).HasColumnName("account_id");
-            entity.Property(e => e.RoleId).HasColumnName("role_id");
-            entity.Property(e => e.Salary)
-                .HasColumnType("decimal(18, 2)")
-                .HasColumnName("salary");
-            entity.Property(e => e.UserName)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("user_name");
+            entity.Property(e => e.Name).HasMaxLength(255);
 
             entity.HasOne(d => d.Account).WithMany(p => p.Users)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_user_account");
+                .HasConstraintName("FK__User__AccountId__3A81B327");
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.RoleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_user_role");
+                .HasConstraintName("FK__User__RoleId__3B75D760");
         });
 
         OnModelCreatingPartial(modelBuilder);

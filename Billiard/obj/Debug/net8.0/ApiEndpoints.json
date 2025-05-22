@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "Billiard.Controllers.RegisterController",
+    "Method": "Register",
+    "RelativePath": "api/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Billiard.DTO.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Billiard.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
