@@ -19,9 +19,16 @@ namespace Billiard.Controllers
         {
             try
             {
-                await _accountService.Register(model);
-                return Ok(model);
-            }
+                bool result = await _accountService.Register(model);
+                if (result)
+                {
+                    return Ok(model);
+                }
+                else
+                {
+                    return BadRequest("Username already exsit");
+                }
+                }
             catch (Exception ex) { 
             return BadRequest(ex.Message);
             }

@@ -5,7 +5,7 @@ namespace Billiard.Services.Account
 {
     public interface IAccountService
     {
-        public  Task Register(RegisterModel model);
+        public  Task<bool> Register(RegisterModel model);
 
 
     }

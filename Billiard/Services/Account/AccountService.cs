@@ -10,9 +10,9 @@ namespace Billiard.Services.Account
         {
             _accRepo = accRepo;
         }
-        public async Task Register(RegisterModel model)
+        public async Task<bool> Register(RegisterModel model)
         {
-            await this._accRepo.Register(model);
+            return await this._accRepo.Register(model);
         }
     }
 }

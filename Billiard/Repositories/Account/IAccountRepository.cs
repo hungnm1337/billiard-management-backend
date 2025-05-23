@@ -4,6 +4,6 @@ namespace Billiard.Repositories.Account
 {
     public interface IAccountRepository
     {
-        public Task Register(RegisterModel model);
+        public Task<bool> Register(RegisterModel model);
     }
 }

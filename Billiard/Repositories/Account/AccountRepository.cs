@@ -2,6 +2,7 @@
 using Billiard.DTO;
 using Billiard.Models;
 using Microsoft.EntityFrameworkCore;
+using Azure.Messaging;
 
 namespace Billiard.Repositories.Account
 {
@@ -14,13 +15,13 @@ namespace Billiard.Repositories.Account
             _passwordHasher = new PasswordHasher<object>();
             _context = context;   
         }
-        public async Task Register(RegisterModel model)
+        public async Task<bool> Register(RegisterModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
             var acc = await _context.Accounts.FirstOrDefaultAsync(x => x.Username.Equals(model.username));
-            if (acc != null) return;
+            if (acc != null) return false;
 
           
             var hashedPassword = _passwordHasher.HashPassword(null, model.password);
@@ -37,13 +38,14 @@ namespace Billiard.Repositories.Account
 
             var nuser = new Models.User
             {
-                Name = model.username,
+                Name = model.name,
                 Dob = model.dob,
                 AccountId = nacc.AccountId,
                 RoleId = model.roleid
             };
             await _context.Users.AddAsync(nuser);
             await _context.SaveChangesAsync();
+            return true;
         }
     }
 
