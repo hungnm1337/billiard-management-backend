@@ -8,6 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Billiard.Repositories.Table;
+using Billiard.Services.Table;
+using Billiard.Repositories.Services;
+using Billiard.Services.Service;
+using Billiard.Repositories.BaseRepository;
+using Billiard.Services.BaseService;
+using Billiard.Services.API;
 
 namespace Billiard
 {
@@ -78,8 +85,26 @@ namespace Billiard
             builder.Services.AddScoped<AccountRepository>();
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ITableRepository, TableRepository>();
+            builder.Services.AddScoped<ITableService, TableService>();
+            builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+            builder.Services.AddScoped<IServicesService, ServicesService>();
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            builder.Services.AddHttpClient<WorldNewsService>();
+            builder.Services.AddHttpClient<PexelsVideoService>();
+
             builder.Services.AddScoped<IPasswordHasher<Models.Account>, PasswordHasher<Models.Account>>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -97,6 +122,7 @@ namespace Billiard
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Billiard v1");
             });
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
