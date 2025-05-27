@@ -27,7 +27,8 @@ namespace Billiard.Services.Auth
             var user = await _context.Accounts.FirstOrDefaultAsync(x => x.Username.Equals(model.Username));
             if (user == null)
                 return (false, null, "Sai tên đăng nhập hoặc mật khẩu!");
-
+            if (user.Status.Equals("BAN"))
+                return (false, null, "Tài khoản đã bị ban khỏi hệ thống");
             var result = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
             if (result == PasswordVerificationResult.Failed)
                 return (false, null, "Sai tên đăng nhập hoặc mật khẩu!");
@@ -39,6 +40,7 @@ namespace Billiard.Services.Auth
             new Claim("AccountId", user.AccountId.ToString()),
             new Claim("UserId", ret.UserId.ToString()),
             new Claim("RoleId", ret.RoleId.ToString()),
+            new Claim("Name",ret.Name.ToString()),
             new Claim("Status", ret.Account.Status)
 
         };

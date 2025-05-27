@@ -24,17 +24,14 @@ namespace Billiard
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
             builder.Services.AddDbContext<Prn232ProjectContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Cấu hình Swagger/OpenAPI với JWT Bearer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Billiard", Version = "v1" });
 
-                // Cấu hình JWT Bearer token cho Swagger UI
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -116,7 +113,6 @@ namespace Billiard
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Billiard v1");
                 });
             }
-            // Nếu muốn Swagger hoạt động cả ở Production, bỏ comment 2 dòng dưới:
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

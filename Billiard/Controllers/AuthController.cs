@@ -28,8 +28,8 @@ namespace Billiard.Controllers
 
             return Ok(new
             {
-                token,
-                username = model.Username
+                token
+
             });
         }
     }

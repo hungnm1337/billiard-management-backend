@@ -19,7 +19,7 @@ namespace Billiard.Services.API
 
         public async Task<List<PexelsVideo>> SearchBilliardVideosAsync(int perPage = 10)
         {
-            var url = $"https://api.pexels.com/videos/search?query=billiard&per_page={perPage}";
+            var url = $"https://api.pexels.com/videos/search?query=billiard&per_page={perPage}&size=large&orientation=landscape";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Authorization", _apiKey);
 
@@ -31,6 +31,7 @@ namespace Billiard.Services.API
 
             return result?.Videos ?? new List<PexelsVideo>();
         }
+
     }
 
     public class PexelsVideoResponse
