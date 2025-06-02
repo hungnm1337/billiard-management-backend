@@ -1,13 +1,31 @@
 ﻿using Billiard.Services.BaseService;
 using Billiard.Repositories.Table;
 using Billiard.Repositories.BaseRepository;
+using Billiard.DTO;
 
 namespace Billiard.Services.Table
 {
     public class TableService : BaseService<Models.Table>, ITableService
     {
-        public TableService(IBaseRepository<Models.Table> repository) : base(repository)
+        private readonly ITableRepository _tableRepository;
+        public TableService(IBaseRepository<Models.Table> repository, ITableRepository tableRepository) : base(repository)
         {
+            _tableRepository = tableRepository; 
+        }
+
+        public async Task<int> BookingTableAsync(BookingTableModel model)
+        {
+            return await _tableRepository.BookingTableAsync(model);
+        }
+
+        public async Task<bool> ChangeStatusTableAsync(int tableId, string oldStatus, string newStatus)
+        {
+            return await _tableRepository.ChangeStatusTableAsync(tableId, oldStatus, newStatus);
+        }
+
+        public async Task<int> GettableIdFromOrderId(int orderid)
+        {
+            return await _tableRepository.GettableIdFromOrderId(orderid);
         }
     }
 }

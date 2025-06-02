@@ -15,6 +15,8 @@ using Billiard.Services.Service;
 using Billiard.Repositories.BaseRepository;
 using Billiard.Services.BaseService;
 using Billiard.Services.API;
+using Billiard.Services.EmailService;
+using Billiard.DTO;
 
 namespace Billiard
 {
@@ -24,10 +26,15 @@ namespace Billiard
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // ===== DATABASE CONFIGURATION =====
             builder.Services.AddDbContext<Prn232ProjectContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            // ===== CONTROLLERS & API =====
+            builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+
+            // ===== SWAGGER CONFIGURATION =====
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Billiard", Version = "v1" });
@@ -58,6 +65,7 @@ namespace Billiard
                 });
             });
 
+            // ===== AUTHENTICATION & JWT =====
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -78,7 +86,36 @@ namespace Billiard
                 };
             });
 
-            builder.Services.AddControllers();
+            // ===== SESSION CONFIGURATION =====
+            builder.Services.AddDistributedMemoryCache();
+            // Trong Program.cs - sửa session config
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.Cookie.Name = "BilliardSession";
+                options.Cookie.SecurePolicy = CookieSecurePolicy.None; // ✅ Sửa cho development
+                options.Cookie.SameSite = SameSiteMode.Lax;
+            });
+
+
+            // ===== CORS CONFIGURATION =====
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200", "https://localhost:4200") // ✅ Specific origin
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
+                });
+            });
+
+            // ===== DEPENDENCY INJECTION =====
+            builder.Services.AddHttpContextAccessor();
+
+            // Repository & Service registrations
             builder.Services.AddScoped<AccountRepository>();
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
@@ -88,23 +125,26 @@ namespace Billiard
             builder.Services.AddScoped<IServicesService, ServicesService>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+
+            // HTTP Clients
             builder.Services.AddHttpClient<WorldNewsService>();
             builder.Services.AddHttpClient<PexelsVideoService>();
 
+            // Email & OTP Services
+            builder.Services.AddScoped<IOtpService, OtpService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
+            // Other services
             builder.Services.AddScoped<IPasswordHasher<Models.Account>, PasswordHasher<Models.Account>>();
 
-            builder.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(policy =>
-                {
-                    policy.AllowAnyOrigin()
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
-            });
+            // Configuration
+            builder.Configuration.GetSection("EmailSettings");
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // ===== MIDDLEWARE PIPELINE (THỨ TỰ QUAN TRỌNG) =====
+
+            // 1. Development tools
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -113,17 +153,31 @@ namespace Billiard
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Billiard v1");
                 });
             }
+
+            // Always enable Swagger for testing
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Billiard v1");
             });
+
+            // 2. HTTPS Redirection (should be early)
+            app.UseHttpsRedirection();
+
+            // 3. CORS (before routing)
             app.UseCors();
 
-            app.UseHttpsRedirection();
+            // 4. Routing (must be before auth)
+            app.UseRouting();
+
+            // 5. Authentication & Authorization
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // 6. Session (AFTER routing, auth)
+            app.UseSession();
+
+            // 7. Map controllers (last)
             app.MapControllers();
 
             app.Run();

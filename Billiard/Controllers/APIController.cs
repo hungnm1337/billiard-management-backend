@@ -19,15 +19,15 @@ namespace Billiard.Controllers
         [HttpGet("billiardvideo")]
         public async Task<IActionResult> GetBilliardVideos([FromQuery] int perPage = 10)
         {
-            //var videos = await _pexelsVideoService.SearchBilliardVideosAsync(perPage);
-            return Ok();
+            var videos = await _pexelsVideoService.SearchBilliardVideosAsync(perPage);
+            return Ok(videos);
         }
 
         [HttpGet("billiardnews")]
         public async Task<IActionResult> GetBilliardNews([FromQuery] int number = 10)
         {
-            //var articles = await _newsService.SearchBilliardNewsAsync(number);
-            return Ok();
+            var articles = await _newsService.SearchBilliardNewsAsync(number);
+            return Ok(articles);
         }
     }
 }

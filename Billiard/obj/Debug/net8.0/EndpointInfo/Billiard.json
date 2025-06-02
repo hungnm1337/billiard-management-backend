@@ -82,6 +82,105 @@
         }
       }
     },
+    "/api/GmailOTP/send-otp": {
+      "post": {
+        "tags": [
+          "GmailOTP"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/GmailOTP/verify-otp": {
+      "post": {
+        "tags": [
+          "GmailOTP"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyOtpRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/GmailOTP/resend-otp": {
+      "post": {
+        "tags": [
+          "GmailOTP"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Register": {
       "post": {
         "tags": [
@@ -483,6 +582,68 @@
         }
       }
     },
+    "/api/Tables/booking": {
+      "post": {
+        "tags": [
+          "Tables"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingTableModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingTableModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookingTableModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Tables/change-status": {
+      "put": {
+        "tags": [
+          "Tables"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusTableRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusTableRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeStatusTableRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/TestJwt/public": {
       "get": {
         "tags": [
@@ -534,6 +695,42 @@
             "items": {
               "$ref": "#/components/schemas/User"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BookingTableModel": {
+        "type": "object",
+        "properties": {
+          "tableId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ChangeStatusTableRequest": {
+        "type": "object",
+        "properties": {
+          "tableId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "oldStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "newStatus": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -951,6 +1148,20 @@
             "items": {
               "$ref": "#/components/schemas/ShiftAssignment"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "VerifyOtpRequest": {
+        "type": "object",
+        "properties": {
+          "orderTableId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "otpCode": {
+            "type": "string",
             "nullable": true
           }
         },

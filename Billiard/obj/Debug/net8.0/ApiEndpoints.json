@@ -48,6 +48,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Billiard.Controllers.GmailOTPController",
+    "Method": "ResendOtp",
+    "RelativePath": "api/GmailOTP/resend-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderTableId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.GmailOTPController",
+    "Method": "SendOtp",
+    "RelativePath": "api/GmailOTP/send-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderTableId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.GmailOTPController",
+    "Method": "VerifyOtp",
+    "RelativePath": "api/GmailOTP/verify-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Billiard.Controllers.VerifyOtpRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Billiard.Controllers.RegisterController",
     "Method": "Register",
     "RelativePath": "api/Register",
@@ -276,6 +324,38 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.TablesController",
+    "Method": "BookingTable",
+    "RelativePath": "api/Tables/booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "Billiard.DTO.BookingTableModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.TablesController",
+    "Method": "ChangeStatusTable",
+    "RelativePath": "api/Tables/change-status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Billiard.Controllers.ChangeStatusTableRequest",
         "IsRequired": true
       }
     ],

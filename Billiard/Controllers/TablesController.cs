@@ -1,4 +1,5 @@
-﻿using Billiard.Models;
+﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Services.Table;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,11 +60,34 @@ namespace Billiard.Controllers
 
         [HttpDelete("{id}")]
         [Authorize]
-
         public async Task<IActionResult> DeleteTable(int id)
         {
             await _tableService.RemoveAsync(id);
             return NoContent();
         }
+
+        [HttpPost("booking")]
+        public async Task<IActionResult> BookingTable([FromBody] BookingTableModel model)
+        {
+            var result = await _tableService.BookingTableAsync(model);
+            if (result != -1)
+                return Ok(result);
+            return BadRequest(new { message = "Đặt bàn thất bại!" });
+        }
+
+        [HttpPut("change-status")]
+        public async Task<IActionResult> ChangeStatusTable([FromBody] ChangeStatusTableRequest request)
+        {
+            var result = await _tableService.ChangeStatusTableAsync(request.TableId, request.OldStatus, request.NewStatus);
+            if (result)
+                return Ok(new { message = "Đổi trạng thái bàn thành công!" });
+            return BadRequest(new { message = "Đổi trạng thái bàn thất bại!" });
+        }
+    }
+    public class ChangeStatusTableRequest
+    {
+        public int TableId { get; set; }
+        public string OldStatus { get; set; }
+        public string NewStatus { get; set; }
     }
 }
