@@ -17,6 +17,8 @@ using Billiard.Services.BaseService;
 using Billiard.Services.API;
 using Billiard.Services.EmailService;
 using Billiard.DTO;
+using Billiard.Repositories.Profile;
+using Billiard.Services.Profile;
 
 namespace Billiard
 {
@@ -125,6 +127,8 @@ namespace Billiard
             builder.Services.AddScoped<IServicesService, ServicesService>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService,ProfileService>();
 
             // HTTP Clients
             builder.Services.AddHttpClient<WorldNewsService>();
