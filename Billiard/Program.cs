@@ -12,13 +12,15 @@ using Billiard.Repositories.Table;
 using Billiard.Services.Table;
 using Billiard.Repositories.Services;
 using Billiard.Services.Service;
-using Billiard.Repositories.BaseRepository;
+using Billiard.Repositories.IBaseRepository;
 using Billiard.Services.BaseService;
 using Billiard.Services.API;
 using Billiard.Services.EmailService;
 using Billiard.DTO;
 using Billiard.Repositories.Profile;
 using Billiard.Services.Profile;
+using Billiard.Repositories.Shift;
+using Billiard.Services.Shift;
 
 namespace Billiard
 {
@@ -129,7 +131,8 @@ namespace Billiard
             builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
             builder.Services.AddScoped<IProfileService,ProfileService>();
-
+            builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
+            builder.Services.AddScoped<IShiftService, ShiftService>();
             // HTTP Clients
             builder.Services.AddHttpClient<WorldNewsService>();
             builder.Services.AddHttpClient<PexelsVideoService>();

@@ -1,4 +1,4 @@
-﻿namespace Billiard.Repositories.BaseRepository
+﻿namespace Billiard.Repositories.IBaseRepository
 {
     public interface IBaseRepository<T> where T : class
     {

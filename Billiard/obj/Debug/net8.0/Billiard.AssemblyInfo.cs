@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Billiard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f57548ad3fb050ad26dfda549c201c4b7cb7fb00")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2b2813cd93c148c31e4fb26c1d919fb03d45ba6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Billiard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Billiard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

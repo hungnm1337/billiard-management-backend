@@ -1,5 +1,5 @@
 ﻿
-using Billiard.Repositories.BaseRepository;
+using Billiard.Repositories.IBaseRepository;
 using Billiard.Repositories.Services;
 using Billiard.Services.BaseService;
 

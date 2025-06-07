@@ -1,6 +1,6 @@
 ﻿using Billiard.Services.BaseService;
 using Billiard.Repositories.Table;
-using Billiard.Repositories.BaseRepository;
+using Billiard.Repositories.IBaseRepository;
 using Billiard.DTO;
 
 namespace Billiard.Services.Table

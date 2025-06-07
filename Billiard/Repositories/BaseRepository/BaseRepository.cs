@@ -1,7 +1,7 @@
 ﻿using Billiard.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Billiard.Repositories.BaseRepository
+namespace Billiard.Repositories.IBaseRepository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {

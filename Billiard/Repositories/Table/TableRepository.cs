@@ -1,6 +1,6 @@
 ﻿using Billiard.DTO;
 using Billiard.Models;
-using Billiard.Repositories.BaseRepository;
+using Billiard.Repositories.IBaseRepository;
 using MailKit.Search;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;

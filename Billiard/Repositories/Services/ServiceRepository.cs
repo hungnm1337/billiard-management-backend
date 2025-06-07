@@ -1,5 +1,5 @@
 ﻿using Billiard.Models;
-using Billiard.Repositories.BaseRepository;
+using Billiard.Repositories.IBaseRepository;
 
 namespace Billiard.Repositories.Services
 {

@@ -1,4 +1,4 @@
-﻿using Billiard.Repositories.BaseRepository;
+﻿using Billiard.Repositories.IBaseRepository;
 
 namespace Billiard.Services.BaseService
 {

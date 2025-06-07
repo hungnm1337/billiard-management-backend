@@ -2,7 +2,6 @@
 using Billiard.Services.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Billiard.Controllers
 {
     [Route("api/[controller]")]
