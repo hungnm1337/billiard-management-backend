@@ -1,4 +1,5 @@
-﻿using Billiard.Models;
+﻿using Billiard.DTOs;
+using Billiard.Models;
 using Billiard.Services.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,46 +15,146 @@ namespace Billiard.Controllers
         {
             _serviceService = serviceService;
         }
-
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Service>>> GetAll()
+        public async Task<IActionResult> GetAllServices()
         {
-            var services = await _serviceService.GetAllAsync();
-            return Ok(services);
+            var result = await _serviceService.GetAllServicesAsync();
+
+            if (result.IsSuccess)
+            {
+                return Ok(result.Data);
+            }
+
+            return StatusCode(500, new { message = result.Message, errors = result.Errors });
         }
 
+        /// <summary>
+        /// Lấy dịch vụ theo ID
+        /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Service>> GetById(int id)
+        public async Task<IActionResult> GetServiceById(int id)
         {
-            var service = await _serviceService.GetByIdAsync(id);
-            if (service == null)
-                return NotFound();
-            return Ok(service);
+            var result = await _serviceService.GetServiceByIdAsync(id);
+
+            if (result.IsSuccess)
+            {
+                return Ok(result.Data);
+            }
+
+            if (result.Message.Contains("Không tìm thấy"))
+            {
+                return NotFound(new { message = result.Message });
+            }
+
+            return StatusCode(500, new { message = result.Message, errors = result.Errors });
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Service>> Add([FromBody] Service service)
+        /// <summary>
+        /// Cập nhật số lượng dịch vụ
+        /// </summary>
+        [HttpPut("{id}/quantity")]
+        public async Task<IActionResult> UpdateQuantity(int id, [FromBody] UpdateQuantityDto updateQuantityDto)
         {
-            await _serviceService.AddAsync(service);
-            return CreatedAtAction(nameof(GetById), new { id = service.ServiceId }, service);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _serviceService.UpdateQuantityAsync(id, updateQuantityDto);
+
+            if (result.IsSuccess)
+            {
+                return Ok(new { message = result.Message });
+            }
+
+            if (result.Message.Contains("Không tìm thấy"))
+            {
+                return NotFound(new { message = result.Message });
+            }
+
+            return BadRequest(new { message = result.Message, errors = result.Errors });
         }
 
+        /// <summary>
+        /// Tăng số lượng dịch vụ
+        /// </summary>
+        [HttpPost("{id}/increase")]
+        public async Task<IActionResult> IncreaseQuantity(int id, [FromBody] ChangeQuantityDto changeQuantityDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _serviceService.IncreaseQuantityAsync(id, changeQuantityDto);
+
+            if (result.IsSuccess)
+            {
+                return Ok(new { message = result.Message });
+            }
+
+            if (result.Message.Contains("Không tìm thấy"))
+            {
+                return NotFound(new { message = result.Message });
+            }
+
+            return BadRequest(new { message = result.Message, errors = result.Errors });
+        }
+
+        /// <summary>
+        /// Giảm số lượng dịch vụ
+        /// </summary>
+        [HttpPost("{id}/decrease")]
+        public async Task<IActionResult> DecreaseQuantity(int id, [FromBody] ChangeQuantityDto changeQuantityDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _serviceService.DecreaseQuantityAsync(id, changeQuantityDto);
+
+            if (result.IsSuccess)
+            {
+                return Ok(new { message = result.Message });
+            }
+
+            if (result.Message.Contains("Không tìm thấy"))
+            {
+                return NotFound(new { message = result.Message });
+            }
+
+            return BadRequest(new { message = result.Message, errors = result.Errors });
+        }
+
+        /// <summary>
+        /// Cập nhật số lượng dịch vụ (phương thức PUT đơn giản)
+        /// </summary>
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Service service)
+        public async Task<IActionResult> UpdateService(int id, [FromBody] UpdateQuantityDto updateQuantityDto)
         {
-            if (id != service.ServiceId)
-                return BadRequest();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            await _serviceService.UpdateAsync(service);
-            return NoContent();
-        }
+            var result = await _serviceService.UpdateQuantityAsync(id, updateQuantityDto);
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _serviceService.RemoveAsync(id);
-            return NoContent();
+            if (result.IsSuccess)
+            {
+                // Trả về dịch vụ đã cập nhật
+                var serviceResult = await _serviceService.GetServiceByIdAsync(id);
+                return Ok(serviceResult.Data);
+            }
+
+            if (result.Message.Contains("Không tìm thấy"))
+            {
+                return NotFound(new { message = result.Message });
+            }
+
+            return BadRequest(new { message = result.Message, errors = result.Errors });
         }
     }
 
 }
+
