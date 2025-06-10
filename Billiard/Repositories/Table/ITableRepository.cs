@@ -6,7 +6,7 @@ namespace Billiard.Repositories.Table
     {
          Task<int> BookingTableAsync(DTO.BookingTableModel model);
          Task<bool> ChangeStatusTableAsync(int OrderId, string oldStatus, string newStatus);
-
+         Task<bool> ChangeStatusTableByIdAsync(int tableId, string newStatus);
         Task<int> GettableIdFromOrderId(int orderid);
 
     }

@@ -181,6 +181,37 @@
         }
       }
     },
+    "/api/Invoice": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoice"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoice"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvoice"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Profile/{userId}": {
       "get": {
         "tags": [
@@ -1047,6 +1078,20 @@
         },
         "additionalProperties": false
       },
+      "CreateInvoice": {
+        "type": "object",
+        "properties": {
+          "employeeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tableId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Invoice": {
         "type": "object",
         "properties": {
@@ -1060,7 +1105,8 @@
           },
           "timeEnd": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "totalAmount": {
             "type": "number",
@@ -1072,59 +1118,22 @@
           },
           "userId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "paymentStatus": {
             "type": "string",
             "nullable": true
           },
-          "employee": {
-            "$ref": "#/components/schemas/User"
-          },
-          "invoiceDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceDetail"
-            },
-            "nullable": true
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "additionalProperties": false
-      },
-      "InvoiceDetail": {
-        "type": "object",
-        "properties": {
-          "serviceTableId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "invoiceId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "tableId": {
             "type": "integer",
             "format": "int32"
           },
-          "serviceId": {
-            "type": "integer",
-            "format": "int32"
+          "employee": {
+            "$ref": "#/components/schemas/User"
           },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "invoice": {
-            "$ref": "#/components/schemas/Invoice"
-          },
-          "service": {
-            "$ref": "#/components/schemas/Service"
-          },
-          "table": {
-            "$ref": "#/components/schemas/Table"
+          "user": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -1317,35 +1326,6 @@
         },
         "additionalProperties": false
       },
-      "Service": {
-        "type": "object",
-        "properties": {
-          "serviceId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "serviceName": {
-            "type": "string",
-            "nullable": true
-          },
-          "price": {
-            "type": "number",
-            "format": "double"
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "invoiceDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceDetail"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Shift": {
         "type": "object",
         "properties": {
@@ -1451,13 +1431,6 @@
           "hourlyRate": {
             "type": "number",
             "format": "double"
-          },
-          "invoiceDetails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceDetail"
-            },
-            "nullable": true
           },
           "orderTables": {
             "type": "array",

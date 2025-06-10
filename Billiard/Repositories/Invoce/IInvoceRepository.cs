@@ -1,0 +1,9 @@
+﻿using Billiard.DTO;
+
+namespace Billiard.Repositories.Invoce
+{
+    public interface IInvoceRepository
+    {
+        Task<int> addInvoce(CreateInvoice invoice);
+    }
+}

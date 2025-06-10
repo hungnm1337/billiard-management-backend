@@ -1,0 +1,33 @@
+﻿using Billiard.DTO;
+using Billiard.Models;
+
+namespace Billiard.Repositories.Invoce
+{
+    public class Invocerepository : IInvoceRepository
+    {
+        private readonly Prn232ProjectContext _projectContext;
+
+        public Invocerepository(Prn232ProjectContext projectContext)
+        {
+            _projectContext = projectContext;   
+        }
+
+        public async Task<int> addInvoce(CreateInvoice invoice)
+        {
+
+            Models.Invoice temp = new Invoice()
+            {
+                TimeStart = DateTime.Now,
+                EmployeeId = invoice.EmployeeId,
+                TableId = invoice.TableId,
+                PaymentStatus = "Đang chơi",
+                TotalAmount = 0
+
+            };
+
+            _projectContext.Invoices.Add(temp);
+            await _projectContext.SaveChangesAsync();
+            return temp.InvoiceId;
+        }
+    }
+}

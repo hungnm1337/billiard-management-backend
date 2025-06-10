@@ -15,9 +15,5 @@ public partial class InvoiceDetail
 
     public int Quantity { get; set; }
 
-    public virtual Invoice Invoice { get; set; } = null!;
-
     public virtual Service Service { get; set; } = null!;
-
-    public virtual Table Table { get; set; } = null!;
 }

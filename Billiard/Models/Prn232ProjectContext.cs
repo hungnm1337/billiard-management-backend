@@ -44,9 +44,8 @@ public partial class Prn232ProjectContext : DbContext
         var builder = new ConfigurationBuilder();
         builder.SetBasePath(Directory.GetCurrentDirectory());
         builder.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-        var configuration = builder.Build();
-        optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
@@ -88,20 +87,10 @@ public partial class Prn232ProjectContext : DbContext
 
             entity.ToTable("InvoiceDetail");
 
-            entity.HasOne(d => d.Invoice).WithMany(p => p.InvoiceDetails)
-                .HasForeignKey(d => d.InvoiceId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__InvoiceDe__Invoi__5535A963");
-
             entity.HasOne(d => d.Service).WithMany(p => p.InvoiceDetails)
                 .HasForeignKey(d => d.ServiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__InvoiceDe__Servi__571DF1D5");
-
-            entity.HasOne(d => d.Table).WithMany(p => p.InvoiceDetails)
-                .HasForeignKey(d => d.TableId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__InvoiceDe__Table__5629CD9C");
         });
 
         modelBuilder.Entity<OrderTable>(entity =>

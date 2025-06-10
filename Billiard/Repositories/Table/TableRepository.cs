@@ -44,7 +44,30 @@ namespace Billiard.Repositories.Table
             }
         }
 
+        public async Task<bool> ChangeStatusTableByIdAsync(int tableId, string newStatus)
+        {
+            try
+            {
+            
+                var table = await _conext.Tables.FirstOrDefaultAsync(x => x.TableId == tableId);
+                if (table == null)
+                {
 
+                    return false; // Bàn không tồn tại
+                }
+                if (table == null)
+                    return false;
+
+                table.Status = newStatus;
+                _conext.Tables.Update(table);
+                await _conext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public async Task<int> BookingTableAsync(DTO.BookingTableModel model)
         {
             using var transaction = await _conext.Database.BeginTransactionAsync();

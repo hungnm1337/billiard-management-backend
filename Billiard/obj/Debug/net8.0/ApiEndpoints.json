@@ -96,6 +96,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Billiard.Controllers.InvoiceController",
+    "Method": "AddInvoice",
+    "RelativePath": "api/Invoice",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invoice",
+        "Type": "Billiard.DTO.CreateInvoice",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Billiard.Controllers.ProfileController",
     "Method": "UpdateProfile",
     "RelativePath": "api/Profile",

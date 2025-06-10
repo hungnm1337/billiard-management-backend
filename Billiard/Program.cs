@@ -21,6 +21,8 @@ using Billiard.Repositories.Profile;
 using Billiard.Services.Profile;
 using Billiard.Repositories.Shift;
 using Billiard.Services.Shift;
+using Billiard.Repositories.Invoce;
+using Billiard.Services.Invoce;
 
 namespace Billiard
 {
@@ -133,6 +135,8 @@ namespace Billiard
             builder.Services.AddScoped<IProfileService,ProfileService>();
             builder.Services.AddScoped<IShiftRepository, ShiftRepository>();
             builder.Services.AddScoped<IShiftService, ShiftService>();
+            builder.Services.AddScoped<IInvoceRepository,Invocerepository>();
+            builder.Services.AddScoped<IInvoceService,InvoceService>();
             // HTTP Clients
             builder.Services.AddHttpClient<WorldNewsService>();
             builder.Services.AddHttpClient<PexelsVideoService>();

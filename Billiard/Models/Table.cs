@@ -13,7 +13,5 @@ public partial class Table
 
     public decimal HourlyRate { get; set; }
 
-    public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; } = new List<InvoiceDetail>();
-
     public virtual ICollection<OrderTable> OrderTables { get; set; } = new List<OrderTable>();
 }
