@@ -26,6 +26,13 @@ namespace Billiard.Controllers
             return Ok(tables);
         }
 
+        [HttpGet("open")]
+        public async Task<ActionResult<IEnumerable<Table>>> GetTablesOpening()
+        {
+            var tables = await _tableService.GetTablesOpening();
+            return Ok(tables);
+        }
+
         [HttpGet("{id}")]
         [Authorize]
 

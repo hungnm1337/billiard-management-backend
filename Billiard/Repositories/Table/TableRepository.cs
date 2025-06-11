@@ -102,5 +102,10 @@ namespace Billiard.Repositories.Table
             return order.TableId; 
         }
 
+        public async Task<IEnumerable<Models.Table>> GetTablesOpening()
+        {
+            var tables = await _conext.Tables.Where(x => x.Status.Equals("Đang sử dụng")).ToListAsync();
+            return tables;
+        }
     }
 }

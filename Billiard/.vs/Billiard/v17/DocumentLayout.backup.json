@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\models\\invoicedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:models\\invoicedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\controllers\\tablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:controllers\\tablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\repositories\\table\\tablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:repositories\\table\\tablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\repositories\\table\\itablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:repositories\\table\\itablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\services\\table\\itableservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,8 +27,16 @@
       "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:services\\table\\tableservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\repositories\\table\\itablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:repositories\\table\\itablerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\services\\baseservice\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:services\\baseservice\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|c:\\users\\user\\onedrive\\desktop\\prn3-pj\\billiard-management-backend\\billiard\\controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AEE2A37-65FC-4694-89ED-6BF300E3E48C}|Billiard.csproj|solutionrelative:controllers\\invoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 194,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,65 +62,117 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "InvoiceDetail.cs",
+              "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Models\\InvoiceDetail.cs",
+              "RelativeDocumentMoniker": "Models\\InvoiceDetail.cs",
+              "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Models\\InvoiceDetail.cs",
+              "RelativeToolTip": "Models\\InvoiceDetail.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T15:31:21.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IBaseService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\BaseService\\IBaseService.cs",
+              "RelativeDocumentMoniker": "Services\\BaseService\\IBaseService.cs",
+              "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\BaseService\\IBaseService.cs",
+              "RelativeToolTip": "Services\\BaseService\\IBaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:59:01.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TablesController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\TablesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TablesController.cs",
+              "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\TablesController.cs",
+              "RelativeToolTip": "Controllers\\TablesController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAzwBwAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:56:31.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TableService.cs",
               "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\Table\\TableService.cs",
               "RelativeDocumentMoniker": "Services\\Table\\TableService.cs",
               "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\Table\\TableService.cs",
               "RelativeToolTip": "Services\\Table\\TableService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBsAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAA3wCUAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T17:16:35.799Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ITableService.cs",
               "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\Table\\ITableService.cs",
               "RelativeDocumentMoniker": "Services\\Table\\ITableService.cs",
               "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Services\\Table\\ITableService.cs",
               "RelativeToolTip": "Services\\Table\\ITableService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T17:16:30.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "ITableRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Repositories\\Table\\ITableRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\Table\\ITableRepository.cs",
               "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Repositories\\Table\\ITableRepository.cs",
               "RelativeToolTip": "Repositories\\Table\\ITableRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T17:15:58.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TableRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Repositories\\Table\\TableRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\Table\\TableRepository.cs",
               "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Repositories\\Table\\TableRepository.cs",
               "RelativeToolTip": "Repositories\\Table\\TableRepository.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwC4AAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAADgv2oAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T17:14:31.696Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
+              "Title": "ServiceController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\ServiceController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ServiceController.cs",
+              "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\ServiceController.cs",
+              "RelativeToolTip": "Controllers\\ServiceController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T14:50:00.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "InvoiceController.cs",
               "DocumentMoniker": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\InvoiceController.cs",
               "RelativeDocumentMoniker": "Controllers\\InvoiceController.cs",
               "ToolTip": "C:\\Users\\User\\OneDrive\\Desktop\\PRN3-PJ\\billiard-management-backend\\Billiard\\Controllers\\InvoiceController.cs",
               "RelativeToolTip": "Controllers\\InvoiceController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwCoAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwCoAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-10T17:10:05.699Z",
               "EditorCaption": ""

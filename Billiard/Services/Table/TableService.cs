@@ -32,5 +32,10 @@ namespace Billiard.Services.Table
         {
             return await _tableRepository.GettableIdFromOrderId(orderid);
         }
+
+        public async Task<IEnumerable<Models.Table>> GetTablesOpening()
+        {
+            return await _tableRepository.GetTablesOpening();
+        }
     }
 }
