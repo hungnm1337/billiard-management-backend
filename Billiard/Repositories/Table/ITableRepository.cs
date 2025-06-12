@@ -10,5 +10,8 @@ namespace Billiard.Repositories.Table
         Task<int> GettableIdFromOrderId(int orderid);
 
         Task<IEnumerable<Models.Table>> GetTablesOpening();
+
+        Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus);
+
     }
 }

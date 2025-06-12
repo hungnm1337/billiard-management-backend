@@ -29,5 +29,31 @@ namespace Billiard.Repositories.Invoce
             await _projectContext.SaveChangesAsync();
             return temp.InvoiceId;
         }
+
+        public async Task<bool> updateInvoice(InvoiceUpdateModel invoiceData)
+        {
+            try
+            {
+                Invoice invoice = await _projectContext.Invoices.FindAsync(invoiceData.InvoiceId);
+                if (invoice == null) {
+                
+                    return false;
+                }
+                invoice.TimeEnd = invoiceData.TimeEnd;
+                invoice.TotalAmount = invoiceData.TotalAmount;
+                invoice.UserId = invoiceData.UserId;
+                invoice.PaymentStatus = invoiceData.PaymentStatus;
+
+                _projectContext.Update(invoice);
+                await _projectContext.SaveChangesAsync();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

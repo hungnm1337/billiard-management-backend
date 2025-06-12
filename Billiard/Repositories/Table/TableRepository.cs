@@ -107,5 +107,31 @@ namespace Billiard.Repositories.Table
             var tables = await _conext.Tables.Where(x => x.Status.Equals("Đang sử dụng")).ToListAsync();
             return tables;
         }
+
+        public async Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus)
+        {
+            try
+            {
+                var invoice = await _conext.Invoices.FindAsync(invoiceId);
+
+                var table = await _conext.Tables.FirstOrDefaultAsync(x => x.TableId == invoice.TableId);
+                if (table == null)
+                {
+
+                    return false; // Bàn không tồn tại
+                }
+                if (table == null)
+                    return false;
+
+                table.Status = newStatus;
+                _conext.Tables.Update(table);
+                await _conext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

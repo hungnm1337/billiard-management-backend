@@ -11,5 +11,7 @@ namespace Billiard.Services.Table
 
         Task<IEnumerable<Models.Table>> GetTablesOpening();
 
+        Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus);
+
     }
 }

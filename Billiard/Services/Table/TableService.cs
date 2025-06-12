@@ -28,6 +28,11 @@ namespace Billiard.Services.Table
             return await _tableRepository.ChangeStatusTableByIdAsync(tableId, newStatus);
         }
 
+        public async Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus)
+        {
+            return await _tableRepository.ChangeStatusTableByInvoiceIdAsync(invoiceId, newStatus);
+        }
+
         public async Task<int> GettableIdFromOrderId(int orderid)
         {
             return await _tableRepository.GettableIdFromOrderId(orderid);

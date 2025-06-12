@@ -6,5 +6,7 @@ namespace Billiard.Services.Invoce
     {
         Task<int> addInvoce(CreateInvoice invoice);
 
+        Task<bool> updateInvoice(InvoiceUpdateModel invoice);
+
     }
 }

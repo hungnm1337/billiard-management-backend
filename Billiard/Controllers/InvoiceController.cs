@@ -1,4 +1,5 @@
 ﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Services.BaseService;
 using Billiard.Services.Invoce;
 using Billiard.Services.Table;
@@ -12,14 +13,14 @@ namespace Billiard.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-        public InvoiceController(IInvoceService invoceService, IBaseService<Table> table,ITableService tb) {
+        public InvoiceController(IInvoceService invoceService, IBaseService<Models.Table> table,ITableService tb) {
         _invoceService = invoceService;
         _table = table;
         _tableService = tb;
         }
 
         private readonly IInvoceService _invoceService;
-        private readonly IBaseService<Table> _table;
+        private readonly IBaseService<Models.Table> _table;
         private readonly ITableService _tableService;
         [HttpPost]
         public async Task<IActionResult> AddInvoice([FromBody]CreateInvoice invoice)
@@ -48,5 +49,41 @@ namespace Billiard.Controllers
                 return BadRequest(ex.ToString());
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateInvoice(int id, [FromBody] InvoiceUpdateModel invoiceData)
+        {
+            try
+            {
+                // Validate input
+                if (invoiceData == null)
+                {
+                    return BadRequest("Invoice data is required");
+                }
+
+                invoiceData.InvoiceId = id;
+
+                bool resultUpdateInvoice = await _invoceService.updateInvoice(invoiceData);
+                if (resultUpdateInvoice)
+                {
+                    bool resultChangeStatusTable = await _tableService.ChangeStatusTableByInvoiceIdAsync(invoiceData.InvoiceId, "Đang trống");
+                    if (resultChangeStatusTable)
+                    {
+                        return Ok(invoiceData.InvoiceId);
+                    }
+                    else
+                    {
+                        return BadRequest("Không thay đổi được trạng thái bàn");
+                    }
+                }
+                return BadRequest("Không thay đổi được thông tin hóa đơn");
+            }
+            catch (Exception ex)
+            {
+                // Log error here
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 }
