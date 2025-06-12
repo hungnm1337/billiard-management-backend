@@ -8,5 +8,7 @@ namespace Billiard.Services.Invoce
 
         Task<bool> updateInvoice(InvoiceUpdateModel invoice);
 
+
+        Task<bool> SaveServiceOfTable(ServiceOfTableModel servicesOfTable);
     }
 }

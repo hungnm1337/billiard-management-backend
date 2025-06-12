@@ -133,6 +133,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Billiard.Controllers.InvoiceController",
+    "Method": "SaveServiceOfTable",
+    "RelativePath": "api/Invoice/service",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceOfTable",
+        "Type": "Billiard.DTO.ServiceOfTableModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Billiard.Controllers.ProfileController",
     "Method": "UpdateProfile",
     "RelativePath": "api/Profile",

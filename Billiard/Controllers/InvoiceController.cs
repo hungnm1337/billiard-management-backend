@@ -85,5 +85,26 @@ namespace Billiard.Controllers
             }
         }
 
+        [HttpPost("service")]
+        public async Task<IActionResult> SaveServiceOfTable([FromBody] ServiceOfTableModel serviceOfTable)
+        {
+            try
+            {
+                bool rerultOfSaveServiceOfTable = await _invoceService.SaveServiceOfTable(serviceOfTable);
+                if (rerultOfSaveServiceOfTable)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }

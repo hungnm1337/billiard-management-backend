@@ -30,6 +30,30 @@ namespace Billiard.Repositories.Invoce
             return temp.InvoiceId;
         }
 
+        public async Task<bool> SaveServiceOfTable(ServiceOfTableModel servicesOfTable)
+        {
+            try
+            {
+                foreach (var item in servicesOfTable.Services)
+                {
+                    InvoiceDetail detail = new InvoiceDetail()
+                    {
+                        InvoiceId = servicesOfTable.InvoiceId,
+                        TableId = servicesOfTable.TableId,
+                        ServiceId = item.Id,
+                        Quantity = item.Quantity,
+                    };
+                    await _projectContext.InvoiceDetails.AddAsync(detail);
+                    await _projectContext.SaveChangesAsync();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> updateInvoice(InvoiceUpdateModel invoiceData)
         {
             try
