@@ -1,4 +1,5 @@
 ﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Repositories.Invoce;
 
 namespace Billiard.Services.Invoce
@@ -12,6 +13,11 @@ namespace Billiard.Services.Invoce
         public async Task<int> addInvoce(CreateInvoice invoice)
         {
             return await _repository.addInvoce(invoice);
+        }
+
+        public async Task<IEnumerable<Invoice>> GetInvoices()
+        {
+            return await _repository.GetInvoices();
         }
 
         public async Task<bool> SaveServiceOfTable(ServiceOfTableModel servicesOfTable)

@@ -1,5 +1,77 @@
 [
   {
+    "ContainingType": "Billiard.Controllers.AccountController",
+    "Method": "GetAccounts",
+    "RelativePath": "api/Account",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Billiard.Models.Account, Billiard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.AccountController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Account/{accountId}/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.AccountController",
+    "Method": "ChangeStatusAccount",
+    "RelativePath": "api/Account/{accountId}/status",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Billiard.Controllers.APIController",
     "Method": "GetBilliardNews",
     "RelativePath": "api/API/billiardnews",
@@ -113,6 +185,26 @@
   },
   {
     "ContainingType": "Billiard.Controllers.InvoiceController",
+    "Method": "GetInvoice",
+    "RelativePath": "api/Invoice",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Billiard.Models.Invoice, Billiard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.InvoiceController",
     "Method": "UpdateInvoice",
     "RelativePath": "api/Invoice/{id}",
     "HttpMethod": "PUT",
@@ -195,6 +287,245 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "GetAllRewardPoints",
+    "RelativePath": "api/RewardPoints",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Billiard.DTO.RewardPointDto, Billiard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "CreateRewardPoint",
+    "RelativePath": "api/RewardPoints",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createDto",
+        "Type": "Billiard.DTO.CreateRewardPointDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "GetRewardPoint",
+    "RelativePath": "api/RewardPoints/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "UpdateRewardPoint",
+    "RelativePath": "api/RewardPoints/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updateDto",
+        "Type": "Billiard.DTO.UpdateRewardPointDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "DeleteRewardPoint",
+    "RelativePath": "api/RewardPoints/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "CheckRewardPointExists",
+    "RelativePath": "api/RewardPoints/{id}",
+    "HttpMethod": "HEAD",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "AddPoints",
+    "RelativePath": "api/RewardPoints/add-points",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addPointsDto",
+        "Type": "Billiard.DTO.AddPointsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "DeductPoints",
+    "RelativePath": "api/RewardPoints/deduct-points",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deductPointsDto",
+        "Type": "Billiard.DTO.DeductPointsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "GetRewardPointByUserId",
+    "RelativePath": "api/RewardPoints/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Billiard.DTO.RewardPointDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Billiard.Controllers.RewardPointsController",
+    "Method": "GetUserPoints",
+    "RelativePath": "api/RewardPoints/user/{userId}/points",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Double",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Billiard.Controllers.ServiceController",
@@ -523,7 +854,7 @@
       },
       {
         "Name": "table",
-        "Type": "Billiard.Models.Table",
+        "Type": "Billiard.DTO.UpdateTableDto",
         "IsRequired": true
       }
     ],

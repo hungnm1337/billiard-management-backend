@@ -8,6 +8,11 @@ namespace Billiard.Services.Table
     public class TableService : BaseService<Models.Table>, ITableService
     {
         private readonly ITableRepository _tableRepository;
+
+        public async Task UpdateTable(UpdateTableDto model)
+        {
+             await _tableRepository.UpdateTable(model);
+        }
         public TableService(IBaseRepository<Models.Table> repository, ITableRepository tableRepository) : base(repository)
         {
             _tableRepository = tableRepository; 

@@ -4,6 +4,7 @@ using Billiard.Services.BaseService;
 using Billiard.Services.Invoce;
 using Billiard.Services.Table;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -13,19 +14,21 @@ namespace Billiard.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-        public InvoiceController(IInvoceService invoceService, IBaseService<Models.Table> table,ITableService tb) {
-        _invoceService = invoceService;
-        _table = table;
-        _tableService = tb;
+        public InvoiceController(IInvoceService invoceService, IBaseService<Models.Table> table, ITableService tb)
+        {
+            _invoceService = invoceService;
+            _table = table;
+            _tableService = tb;
         }
 
         private readonly IInvoceService _invoceService;
         private readonly IBaseService<Models.Table> _table;
         private readonly ITableService _tableService;
         [HttpPost]
-        public async Task<IActionResult> AddInvoice([FromBody]CreateInvoice invoice)
+        public async Task<IActionResult> AddInvoice([FromBody] CreateInvoice invoice)
         {
-            try {
+            try
+            {
 
                 int InvoiceId = await _invoceService.addInvoce(invoice);
                 if (InvoiceId == 0)
@@ -33,7 +36,7 @@ namespace Billiard.Controllers
                     return NotFound();
                 }
                 else
-                {               
+                {
                     bool r = await _tableService.ChangeStatusTableByIdAsync(invoice.TableId, "Đang sử dụng");
                     if (r)
                     {
@@ -44,8 +47,10 @@ namespace Billiard.Controllers
                         return BadRequest();
                     }
                 }
-            } catch (Exception ex) {
-            
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(ex.ToString());
             }
         }
@@ -100,6 +105,19 @@ namespace Billiard.Controllers
                     return BadRequest();
                 }
 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Invoice>>> GetInvoice()
+        {
+            try
+            {
+                return Ok(await  _invoceService.GetInvoices());
             }
             catch (Exception ex)
             {

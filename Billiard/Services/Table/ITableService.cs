@@ -1,4 +1,5 @@
-﻿using Billiard.Models;
+﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Services.BaseService;
 namespace Billiard.Services.Table
 {
@@ -13,5 +14,6 @@ namespace Billiard.Services.Table
 
         Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus);
 
+        Task UpdateTable(UpdateTableDto model);
     }
 }

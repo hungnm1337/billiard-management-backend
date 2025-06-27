@@ -1,4 +1,5 @@
 ﻿using Billiard.DTO;
+using Billiard.Models;
 
 namespace Billiard.Repositories.Invoce
 {
@@ -10,6 +11,7 @@ namespace Billiard.Repositories.Invoce
 
         Task<bool> SaveServiceOfTable(ServiceOfTableModel servicesOfTable);
 
+        Task<IEnumerable<Invoice>> GetInvoices();
 
     }
 }

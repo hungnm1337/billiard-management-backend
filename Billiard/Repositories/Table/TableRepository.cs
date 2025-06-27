@@ -133,5 +133,23 @@ namespace Billiard.Repositories.Table
                 return false;
             }
         }
+
+        public async Task UpdateTable(UpdateTableDto model)
+        {
+            try
+            {
+                var table = _conext.Tables.Find(model.TableId);
+                table.TableName = model.TableName;
+                table.HourlyRate = model.HourlyRate;
+
+                _context.Tables.Update(table);
+                await _context.SaveChangesAsync();
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+        }
     }
 }

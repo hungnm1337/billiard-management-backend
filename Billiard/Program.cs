@@ -23,6 +23,10 @@ using Billiard.Repositories.Shift;
 using Billiard.Services.Shift;
 using Billiard.Repositories.Invoce;
 using Billiard.Services.Invoce;
+using AutoMapper;
+using Billiard.Repositories.RewardPoint;
+using Billiard.Services.RewardPoints;
+using Billiard.Profiles;
 
 namespace Billiard
 {
@@ -121,7 +125,7 @@ namespace Billiard
             // ===== DEPENDENCY INJECTION =====
             builder.Services.AddHttpContextAccessor();
 
-            // Repository & Service registrations
+            builder.Services.AddAutoMapper(typeof(RewardPointProfile));   
             builder.Services.AddScoped<AccountRepository>();
             builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
@@ -137,6 +141,12 @@ namespace Billiard
             builder.Services.AddScoped<IShiftService, ShiftService>();
             builder.Services.AddScoped<IInvoceRepository,Invocerepository>();
             builder.Services.AddScoped<IInvoceService,InvoceService>();
+            builder.Services.AddScoped<IRewardPointRepository, RewardPointRepository>();
+            builder.Services.AddScoped<IRewardPointService,RewardPointService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+
+
             // HTTP Clients
             builder.Services.AddHttpClient<WorldNewsService>();
             builder.Services.AddHttpClient<PexelsVideoService>();

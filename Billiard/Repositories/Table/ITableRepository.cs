@@ -1,4 +1,5 @@
-﻿using Billiard.Repositories.IBaseRepository;
+﻿using Billiard.DTO;
+using Billiard.Repositories.IBaseRepository;
 
 namespace Billiard.Repositories.Table
 {
@@ -7,11 +8,12 @@ namespace Billiard.Repositories.Table
          Task<int> BookingTableAsync(DTO.BookingTableModel model);
          Task<bool> ChangeStatusTableAsync(int OrderId, string oldStatus, string newStatus);
          Task<bool> ChangeStatusTableByIdAsync(int tableId, string newStatus);
-        Task<int> GettableIdFromOrderId(int orderid);
+         Task<int> GettableIdFromOrderId(int orderid);
 
-        Task<IEnumerable<Models.Table>> GetTablesOpening();
+         Task<IEnumerable<Models.Table>> GetTablesOpening();
 
-        Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus);
+         Task<bool> ChangeStatusTableByInvoiceIdAsync(int invoiceId, string newStatus);
 
+         Task UpdateTable(UpdateTableDto model);
     }
 }

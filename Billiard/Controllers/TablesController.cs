@@ -45,7 +45,6 @@ namespace Billiard.Controllers
         }
 
         [HttpPost]
-        [Authorize]
 
         public async Task<ActionResult<Table>> AddTable([FromBody] Table table)
         {
@@ -53,20 +52,18 @@ namespace Billiard.Controllers
             return CreatedAtAction(nameof(GetTableById), new { id = table.TableId }, table);
         }
 
-        [HttpPut("{id}")]
-        [Authorize]
+        [HttpPut("{id}")]       
 
-        public async Task<IActionResult> UpdateTable(int id, [FromBody] Table table)
+        public async Task<IActionResult> UpdateTable(int id, [FromBody] UpdateTableDto table)
         {
             if (id != table.TableId)
                 return BadRequest();
 
-            await _tableService.UpdateAsync(table);
+            await _tableService.UpdateTable(table);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<IActionResult> DeleteTable(int id)
         {
             await _tableService.RemoveAsync(id);

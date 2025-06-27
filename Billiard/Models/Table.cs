@@ -13,5 +13,5 @@ public partial class Table
 
     public decimal HourlyRate { get; set; }
 
-    public virtual ICollection<OrderTable> OrderTables { get; set; } = new List<OrderTable>();
+    public virtual ICollection<OrderTable>? OrderTables { get; set; } = new List<OrderTable>();
 }
