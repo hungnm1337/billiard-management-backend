@@ -40,7 +40,7 @@ namespace Billiard.Controllers
                 EmployeeId = service.EmployeeId,
                 ShiftId = service.ShiftId,
                 Day = service.Day,
-                Status = service.Status,
+                Status = "Pending",
             };
             await _shiftService.AddAsync(shiftAssignment);
             return CreatedAtAction(nameof(GetById), new { id = service.Id }, service);

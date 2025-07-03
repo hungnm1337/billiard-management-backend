@@ -33,7 +33,7 @@ namespace Billiard.Services.Auth
             if (result == PasswordVerificationResult.Failed)
                 return (false, null, "Sai tên đăng nhập hoặc mật khẩu!");
 
-            User ret = await _context.Users.FirstOrDefaultAsync(x => x.AccountId == user.AccountId);
+            Models.User ret = await _context.Users.FirstOrDefaultAsync(x => x.AccountId == user.AccountId);
             var claims = new[]
             {
             new Claim(ClaimTypes.Name, user.Username),

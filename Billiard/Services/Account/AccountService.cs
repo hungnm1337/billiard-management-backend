@@ -16,6 +16,8 @@ namespace Billiard.Services.Account
            return await _accRepo.changeStatusAccount(accountId);
         }
 
+      
+
         public async Task<IEnumerable<Models.Account>> GetAccounts()
         {
             return await _accRepo.GetAccounts();
@@ -30,5 +32,7 @@ namespace Billiard.Services.Account
         {
             return await _accRepo.resetPassword(accountId);
         }
+
+
     }
 }

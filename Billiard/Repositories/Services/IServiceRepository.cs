@@ -1,4 +1,5 @@
-﻿using Billiard.Models;
+﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Repositories.IBaseRepository;
 
 namespace Billiard.Repositories.Services
@@ -11,5 +12,9 @@ namespace Billiard.Repositories.Services
         Task<bool> IncreaseQuantityAsync(int id, int amount);
         Task<bool> DecreaseQuantityAsync(int id, int amount);
         Task<bool> ExistsAsync(int id);
+
+        Task<bool> CreateService(ServiceModel service);
+
+        Task<bool> UpdateService(ServiceModel service);
     }
 }

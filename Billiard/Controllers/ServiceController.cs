@@ -1,4 +1,5 @@
-﻿using Billiard.DTOs;
+﻿using Billiard.DTO;
+using Billiard.DTOs;
 using Billiard.Models;
 using Billiard.Services.Service;
 using Microsoft.AspNetCore.Http;
@@ -153,6 +154,40 @@ namespace Billiard.Controllers
             }
 
             return BadRequest(new { message = result.Message, errors = result.Errors });
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateServiceName(int id, [FromBody] ServiceModel serviceModel)
+        {
+            if (!ModelState.IsValid && id != serviceModel.ServiceId)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _serviceService.UpdateService(serviceModel);
+
+            if (result)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewService([FromBody] ServiceModel serviceModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var createNewService = await _serviceService.CreateService(serviceModel);
+
+            if (createNewService)
+            {
+                return Ok(createNewService);
+            }
+            return BadRequest(createNewService);
         }
     }
 

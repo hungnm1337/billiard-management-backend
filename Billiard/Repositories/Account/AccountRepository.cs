@@ -42,9 +42,11 @@ namespace Billiard.Repositories.Account
 
         }
 
+      
+
         public async Task<IEnumerable<Models.Account>> GetAccounts()
         {
-            var accounts = await _context.Accounts.ToListAsync();
+            var accounts = await _context.Accounts.Include(x => x.Users).ToListAsync();
             return accounts;
         }
 
@@ -105,6 +107,8 @@ namespace Billiard.Repositories.Account
             }
 
         }
+
+ 
 
         private string genaratePassword()
         {

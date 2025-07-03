@@ -4,6 +4,7 @@ using Billiard.Repositories.IBaseRepository;
 using Billiard.Repositories.Services;
 using Billiard.Services.BaseService;
 using Billiard.Models;
+using Billiard.DTO;
 namespace Billiard.Services.Service
 {
     public class ServicesService : BaseService<Models.Service>, IServicesService
@@ -120,6 +121,16 @@ namespace Billiard.Services.Service
             {
                 return ServiceResult.Failure("Đã xảy ra lỗi khi giảm số lượng");
             }
+        }
+
+        public async Task<bool> CreateService(ServiceModel service)
+        {
+            return await _serviceRepository.CreateService(service);
+        }
+
+        public async Task<bool> UpdateService(ServiceModel service)
+        {
+            return await _serviceRepository.UpdateService(service);
         }
     }
 }

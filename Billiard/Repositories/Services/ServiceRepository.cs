@@ -1,4 +1,5 @@
-﻿using Billiard.Models;
+﻿using Billiard.DTO;
+using Billiard.Models;
 using Billiard.Repositories.IBaseRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -99,6 +100,45 @@ namespace Billiard.Repositories.Services
         public async Task<bool> ExistsAsync(int id)
         {
             return await _context.Services.AnyAsync(s => s.ServiceId == id);
+        }
+
+        public async Task<bool> CreateService(ServiceModel service)
+        {
+            try
+            {
+                Service newServcie = new Service()
+                {
+                    Price = service.Price,
+                    Quantity = service.Quantity,
+                    ServiceName = service.ServiceName
+                };
+                await _context.Services.AddAsync(newServcie);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateService(ServiceModel service)
+        {
+            try
+            {
+                Service curServcie = await _context.Services.FindAsync(service.ServiceId);
+                curServcie.Quantity = service.Quantity;
+                curServcie.Price = service.Price;
+                curServcie.ServiceName = service.ServiceName;
+                _context.Services.Update(curServcie);
+                await _context.SaveChangesAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Billiard.Models;
 
@@ -15,6 +16,7 @@ public partial class User
 
     public DateOnly Dob { get; set; }
 
+    [JsonIgnore]
     public virtual Account Account { get; set; } = null!;
 
     public virtual ICollection<Invoice> InvoiceEmployees { get; set; } = new List<Invoice>();

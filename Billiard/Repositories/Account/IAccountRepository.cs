@@ -11,5 +11,7 @@ namespace Billiard.Repositories.Account
         public Task<bool> changeStatusAccount(int accountId);
 
         public Task<string> resetPassword(int accountId);
+
+  
     }
 }

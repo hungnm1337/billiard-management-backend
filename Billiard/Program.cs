@@ -27,6 +27,8 @@ using AutoMapper;
 using Billiard.Repositories.RewardPoint;
 using Billiard.Services.RewardPoints;
 using Billiard.Profiles;
+using Billiard.Repositories.User;
+using Billiard.Services.User;
 
 namespace Billiard
 {
@@ -145,6 +147,8 @@ namespace Billiard
             builder.Services.AddScoped<IRewardPointService,RewardPointService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
 
             // HTTP Clients

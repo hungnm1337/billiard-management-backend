@@ -1,4 +1,5 @@
-﻿using Billiard.DTOs;
+﻿using Billiard.DTO;
+using Billiard.DTOs;
 using Billiard.Services.BaseService;
 
 namespace Billiard.Services.Service
@@ -10,5 +11,9 @@ namespace Billiard.Services.Service
         Task<ServiceResult> UpdateQuantityAsync(int id, UpdateQuantityDto updateQuantityDto);
         Task<ServiceResult> IncreaseQuantityAsync(int id, ChangeQuantityDto changeQuantityDto);
         Task<ServiceResult> DecreaseQuantityAsync(int id, ChangeQuantityDto changeQuantityDto);
+
+        Task<bool> CreateService(ServiceModel service);
+
+        Task<bool> UpdateService(ServiceModel service);
     }
 }
